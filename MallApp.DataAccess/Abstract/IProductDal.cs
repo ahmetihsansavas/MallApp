@@ -10,7 +10,6 @@ namespace MallApp.DataAccess.Abstract
     public interface IProductDal:IRepository<Product>
     {
         IEnumerable<Product> GetPopularProducts();
-
-  
+        int ProductCount();
     }
 }

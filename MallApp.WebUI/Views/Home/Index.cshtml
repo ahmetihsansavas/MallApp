@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MallApp.Entities.Product>
+﻿@model MallApp.WebUI.Models.ProductListModel
 @{
     Layout = null;
 }
@@ -8,12 +8,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~\node_modules\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" />
     <title>Index</title>
 </head>
 <body>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Products)
     {
         <p>@item.Name</p>
     }
 </body>
+<footer>
+    <p>@Model.ProductCount adet ürün listelendi</p>
+</footer>
 </html>

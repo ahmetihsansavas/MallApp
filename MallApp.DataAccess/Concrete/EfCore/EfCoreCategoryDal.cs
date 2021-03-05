@@ -9,7 +9,7 @@ using System.Text;
 namespace MallApp.DataAccess.Concrete.EfCore
 {
   
-    class EfCoreCategoryDal : EfCoreGenericRepository<Category,MallContext>,ICategoryDal 
+    public class EfCoreCategoryDal : EfCoreGenericRepository<Category,MallContext>,ICategoryDal 
     {
        
     }

@@ -3,6 +3,7 @@ using MallApp.Business.Concrete;
 using MallApp.DataAccess.Abstract;
 using MallApp.DataAccess.Concrete.EfCore;
 using MallApp.DataAccess.Concrete.Memory;
+using MallApp.WebUI.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,7 +24,10 @@ namespace MallApp.WebUI
         {
             //IProduct EfCoreProductDal
             services.AddScoped<IProductDal, EfCoreProductDal>();
+            services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
+
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<ICategoryService,CategoryManager>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
@@ -36,7 +40,8 @@ namespace MallApp.WebUI
                 app.UseDeveloperExceptionPage();
                 SeedDatabase.Seed();
             }
-
+            app.UseStaticFiles();
+            app.CustomStaticFiles();
             app.UseRouting();
             app.UseMvcWithDefaultRoute();
          

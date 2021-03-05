@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MallApp.DataAccess.Concrete.Memory
 {
-    public class MemoryProductDal : IProductDal
+    public class MemoryProductDal  //IProductDal
     {
         public void Create(Product entity)
         {

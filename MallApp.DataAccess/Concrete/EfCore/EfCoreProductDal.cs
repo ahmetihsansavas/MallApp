@@ -14,5 +14,13 @@ namespace MallApp.DataAccess.Concrete.EfCore
         {
             throw new NotImplementedException();
         }
+
+        public int ProductCount()
+        {
+            using (var context = new MallContext())
+            {
+                return context.Products.Count();
+            }
+        }
     }
 }

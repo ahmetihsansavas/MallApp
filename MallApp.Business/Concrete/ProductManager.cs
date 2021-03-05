@@ -36,6 +36,16 @@ namespace MallApp.Business.Concrete
             return _productDal.GetById(id);
         }
 
+        public List<Product> GetPopularProducts()
+        {
+            return _productDal.GetAll();
+        }
+
+        public int ProductCount()
+        {
+            return _productDal.ProductCount();
+        }
+
         public void Update(Product entity)
         {
             _productDal.Update(entity);
