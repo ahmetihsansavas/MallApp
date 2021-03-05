@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MallApp.DataAccess\MallApp.DataAccess.csproj" />
     <ProjectReference Include="..\MallApp.Entities\MallApp.Entities.csproj" />
   </ItemGroup>
