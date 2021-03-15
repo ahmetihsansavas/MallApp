@@ -36,6 +36,11 @@ namespace MallApp.Business.Concrete
             return _productDal.GetById(id);
         }
 
+        public int GetCountByCategory(string category)
+        {
+            return _productDal.GetCountByCategory(category);
+        }
+
         public List<Product> GetPopularProducts()
         {
             return _productDal.GetAll();
@@ -46,9 +51,9 @@ namespace MallApp.Business.Concrete
             return _productDal.GetProductDetails(id);
         }
 
-        public List<Product> GetProductsByCategory(string category)
+        public List<Product> GetProductsByCategory(string category,int page,int pageSize)
         {
-            return _productDal.GetProductsByCategory(category);
+            return _productDal.GetProductsByCategory(category,page,pageSize);
         }
 
         public List<Product> GetProductsByName(string text)

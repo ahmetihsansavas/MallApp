@@ -37,13 +37,23 @@ namespace MallApp.WebUI.Controllers
 
        // [Route("Shop/List")]
        // [Route("Shop/List/{text?}")]
-        public IActionResult List(string? text,string? category)
+       //products/telefon?page=2
+        public IActionResult List(string? text,string? category,int page=1)
         {
+            const int pageSize = 5;
             var products = new ProductListModel()
             {
                 Products = _productService.GetAll(),
                 Text = text,
-                ProductCount = _productService.ProductCount()
+                ProductCount = _productService.ProductCount(),
+                PageInfo = new PageInfo()
+                {
+                    TotalItems = _productService.GetCountByCategory(category),
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    CurrentCategory = category
+                }
+
             };
 
             if (text != null)
@@ -53,9 +63,18 @@ namespace MallApp.WebUI.Controllers
                 products.ProductCount = _productService.GetProductsByName(text).Count();
                 return View(products);
             }
-            if (category != null)
+            if (category != null )
             {
-                products.Products = _productService.GetProductsByCategory(category);
+                products.Products = _productService.GetProductsByCategory(category,page,pageSize);
+                products.ProductCount = products.Products.Count();
+                return View(products);
+            }
+            if (page >= 1)
+            {
+                products.Products = _productService.GetProductsByCategory(category, page, pageSize);
+                products.ProductCount = products.Products.Count();
+                
+                return View(products);
             }
 
            

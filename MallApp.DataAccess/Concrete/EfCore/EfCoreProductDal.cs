@@ -11,6 +11,23 @@ namespace MallApp.DataAccess.Concrete.EfCore
 {
     public class EfCoreProductDal : EfCoreGenericRepository<Product, MallContext>, IProductDal
     {
+        public int GetCountByCategory(string category)
+        {
+            using (var context = new MallContext())
+            {
+                var products = context.Products.AsQueryable();
+                if (!string.IsNullOrEmpty(category))
+                {
+                    products = products
+                                        .Include(i => i.ProductCategories)
+                                        .ThenInclude(i => i.Category)
+                                        .Where(i => i.ProductCategories.Any(a =>a.Category.Name.ToLower()==category.ToLower()) );
+                            
+                }
+                return products.Count();
+            }
+        }
+
         public IEnumerable<Product> GetPopularProducts()
         {
             throw new NotImplementedException();
@@ -28,7 +45,7 @@ namespace MallApp.DataAccess.Concrete.EfCore
             }
         }
 
-        public List<Product> GetProductsByCategory(string category)
+        public List<Product> GetProductsByCategory(string category,int page,int pageSize)
         {
             using (var context = new MallContext())
             {
@@ -40,7 +57,7 @@ namespace MallApp.DataAccess.Concrete.EfCore
                                        .ThenInclude(i => i.Category)
                                        .Where(i => i.ProductCategories.Any(a=>a.Category.Name.ToLower() == category.ToLower()));
                 }
-                return products.ToList();
+                return products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             }
         }
 

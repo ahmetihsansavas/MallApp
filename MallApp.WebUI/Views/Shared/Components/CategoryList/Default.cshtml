@@ -4,7 +4,14 @@
 <ul class="list-group">
     @foreach (var item in Model.Categories)
     {
-    <li class="list-group-item">@item.Name</li>
+    <a
+      
+       asp-route="products"
+       asp-route-category="@item.Name.ToLower()"
+       class="list-group-item list-group-item-action @(Model.SelectedCategory == item.Name.ToLower()?"list-group-item-danger" : "")"
+       >
+      @item.Name
+    </a>
     }
     
 </ul>

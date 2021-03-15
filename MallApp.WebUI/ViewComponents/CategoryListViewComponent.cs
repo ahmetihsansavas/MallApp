@@ -18,10 +18,11 @@ namespace MallApp.WebUI.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync() 
         {
 
-            return View(new CategoryListViewModel() 
+            return View(new CategoryListViewModel()
             {
+             SelectedCategory = RouteData.Values["category"]?.ToString(),
             Categories = _categoryService.GetAll()
-            } );
+            }) ;
         }
     }
 }
