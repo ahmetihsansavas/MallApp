@@ -13,5 +13,6 @@ namespace MallApp.DataAccess.Abstract
         int ProductCount();
         List<Product> GetProductsByName(string text);
         Product GetProductDetails(int id);
+        List<Product> GetProductsByCategory(string category);
     }
 }

@@ -35,9 +35,9 @@ namespace MallApp.WebUI.Controllers
             });
         }
 
-        [Route("Shop/List")]
-        [Route("Shop/List/{text?}")]
-        public IActionResult List(string? text)
+       // [Route("Shop/List")]
+       // [Route("Shop/List/{text?}")]
+        public IActionResult List(string? text,string? category)
         {
             var products = new ProductListModel()
             {
@@ -53,10 +53,14 @@ namespace MallApp.WebUI.Controllers
                 products.ProductCount = _productService.GetProductsByName(text).Count();
                 return View(products);
             }
-            else
+            if (category != null)
             {
-                return View(products);
+                products.Products = _productService.GetProductsByCategory(category);
             }
+
+           
+                return View(products);
+            
 
 
 

@@ -58,6 +58,11 @@ namespace MallApp.WebUI
                 template: "{controller=Home}/{action=Index}/{id?}"
                  );
                 routes.MapRoute(
+                name: "products",
+                template: "products/{category?}",
+                defaults : new {controller = "Shop" , action ="List" }
+               );
+                routes.MapRoute(
                 name: "Shop",
                 template: "Shop/List/{text?}",
                 defaults: new { controller = "Shop", action = "List" }
