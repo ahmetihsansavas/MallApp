@@ -41,6 +41,16 @@ namespace MallApp.Business.Concrete
             return _productDal.GetAll();
         }
 
+        public Product GetProductDetails(int id)
+        {
+            return _productDal.GetProductDetails(id);
+        }
+
+        public List<Product> GetProductsByName(string text)
+        {
+            return _productDal.GetProductsByName(text);
+        }
+
         public int ProductCount()
         {
             return _productDal.ProductCount();

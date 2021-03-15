@@ -1,0 +1,36 @@
+﻿@model ProductListModel
+
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    @await Component.InvokeAsync("CategoryList")
+
+                </ul>
+            </div>
+
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input class="form-control" asp-controller="Shop" asp-action="List" asp-for="@Model.Text"  />
+                    <div class="input-group-append">
+                        <button asp-route-text="@Model.Text" type="submit" class="btn btn-danger">Search</button>
+                    </div>
+                    
+                </div>
+                <hr />
+                <div class="row ">
+                    @foreach (var product in Model.Products)
+                    {
+                        <partial name="_product" for="@product" />
+                    }
+
+                </div>
+                <hr />
+                <p>@Model.ProductCount adet ürün bulundu...</p>
+            </div>
+           
+        </div>
+
+
+    </form>

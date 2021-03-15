@@ -1,4 +1,5 @@
 ﻿using MallApp.Business.Abstract;
+using MallApp.DataAccess.Abstract;
 using MallApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,11 @@ namespace MallApp.Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
+        private ICategoryDal  _categoryDal;
+        public CategoryManager(ICategoryDal categoryDal)
+        {
+            _categoryDal = categoryDal;
+        }
         public void Create(Category entity)
         {
             throw new NotImplementedException();
@@ -20,7 +26,7 @@ namespace MallApp.Business.Concrete
 
         public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return _categoryDal.GetAll();
         }
 
         public Category GetById(int id)

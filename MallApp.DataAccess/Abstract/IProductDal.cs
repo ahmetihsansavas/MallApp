@@ -11,5 +11,7 @@ namespace MallApp.DataAccess.Abstract
     {
         IEnumerable<Product> GetPopularProducts();
         int ProductCount();
+        List<Product> GetProductsByName(string text);
+        Product GetProductDetails(int id);
     }
 }

@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace MallApp.WebUI.Models
 {
-    public class ProductListModel
+    public class ProductDetailsModel
     {
-        public List<Product> Products { get; set; }
-
+        public Product  Product { get; set; }
         public List<Category> Categories { get; set; }
-        public int ProductCount { get; set; }
-        public string Text { get; set; }
     }
 }
